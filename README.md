@@ -1,7 +1,7 @@
 Vagrant Config for TYPO3 Flow Development
 =========================================
 
-My default Linux box for PHP development with TYPO3 Flow (but should work with other PHP stuff, too).
+My default Linux box for PHP development with [TYPO3 Flow](http://flow.typo3.org/) (but should work with other PHP stuff, too).
 
 Installation:
 -------------
@@ -33,15 +33,15 @@ TODO:
 
 The following stuff is what I want to add to this box:
 
-- NginX
+- Apache
 - MySQL
 - PHP (FPM)
 - phpMyAdmin
 - composer
 
-Optional:
----------
+Optional and maybe later:
 
+- NginX
 - xDebug
 - zsh with oh-my-zsh
 - git
