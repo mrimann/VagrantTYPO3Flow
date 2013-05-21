@@ -22,6 +22,11 @@ Boot up the virtual box:
 
 	vagrant up
 
+The box gets a static IP address *192.168.42.42* which is only accessible from your local computer.
+
+To log in via SSH, just execute the following command from within the current directory:
+
+	vagrant ssh
 
 TODO:
 -----
