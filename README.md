@@ -28,13 +28,18 @@ To log in via SSH, just execute the following command from within the current di
 
 	vagrant ssh
 
+
+What it contains:
+-----------------
+
+- MySQL server (user: *root*, no password)
+
 TODO:
 -----
 
 The following stuff is what I want to add to this box:
 
 - Apache
-- MySQL
 - PHP (FPM)
 - phpMyAdmin
 - composer
