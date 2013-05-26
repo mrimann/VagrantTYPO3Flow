@@ -1,0 +1,4 @@
+# Managed by Puppet!
+
+deb http://ppa.launchpad.net/ondrej/php5/ubuntu precise main
+deb-src http://ppa.launchpad.net/ondrej/php5/ubuntu precise main
