@@ -28,6 +28,10 @@ To log in via SSH, just execute the following command from within the current di
 
 	vagrant ssh
 
+If you fiddle around/extend/change/improve with the Puppet manifests contained in here, you can simple re-run the puppet apply command from outside of the VM with the following command (instead of rebooting the VM):
+
+	vagrant provision
+
 
 What it contains:
 -----------------
