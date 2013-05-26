@@ -33,14 +33,14 @@ What it contains:
 -----------------
 
 - MySQL server (user: *root*, no password)
+- PHP (FPM)
+- Apache
 
 TODO:
 -----
 
 The following stuff is what I want to add to this box:
 
-- Apache
-- PHP (FPM)
 - phpMyAdmin
 - composer
 
