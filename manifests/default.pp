@@ -48,28 +48,6 @@ service { 'mysql':
 }
 
 
-# ---------------------------------------------------
-# Install Apache
-# ---------------------------------------------------
-
-package { "apache2":
-	ensure => present,
-	require => Exec['apt-get update'],
-}
-
-service { 'apache2':
-	ensure => running,
-	hasstatus => true,
-	hasrestart => true,
-	enable => true,
-	require => Package['apache2'],
-}
-
-file { "/var/www":
-	ensure => directory,
-	recurse => false,
-}
-
 
 # ---------------------------------------------------
 # Install PHP 5.4.x with FPM
@@ -121,4 +99,28 @@ service { 'php5-fpm':
 	require => Package['php5-fpm'],
 	hasrestart => true,
 	hasstatus => true,
+}
+
+
+
+# ---------------------------------------------------
+# Install Apache
+# ---------------------------------------------------
+
+package { "apache2":
+	ensure => present,
+	require => Exec['apt-get update'],
+}
+
+service { 'apache2':
+	ensure => running,
+	hasstatus => true,
+	hasrestart => true,
+	enable => true,
+	require => Package['apache2'],
+}
+
+file { "/var/www":
+	ensure => directory,
+	recurse => false,
 }
