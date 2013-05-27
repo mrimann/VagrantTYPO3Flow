@@ -7,6 +7,8 @@ Vagrant.configure("2") do |config|
 
 	config.vm.network :private_network, ip: "192.168.42.42"
 
+	config.vm.synced_folder "vHosts/", "/var/www/"
+
 	# configure the VM via Puppet
 	config.vm.provision :puppet
 end

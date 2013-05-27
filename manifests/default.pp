@@ -107,6 +107,16 @@ service { 'php5-fpm':
 	hasstatus => true,
 }
 
+file { '/etc/php5/conf.d/99-vagrant.ini':
+	ensure => present,
+	source => "/vagrant/manifests/files/90-vagrant.ini",
+	require => [
+		Package['libapache2-mod-php5'],
+	],
+	notify => [
+		Service['apache2'],
+	],
+}
 
 
 # ---------------------------------------------------
@@ -129,6 +139,30 @@ service { 'apache2':
 file { "/var/www":
 	ensure => directory,
 	recurse => false,
+}
+
+# Enable the "vhost_alias" module for apache
+exec { "/usr/sbin/a2enmod vhost_alias":
+	unless => "/bin/readlink -e /etc/apache2/mods-enabled/vhost_alias.load",
+	notify => Exec["force-reload-apache2"],
+	require => Package['apache2'],
+}
+
+exec { "force-reload-apache2":
+	command => "/etc/init.d/apache2 force-reload",
+	refreshonly => true,
+}
+
+file { '/etc/apache2/sites-enabled/mass_vhost.conf':
+	ensure => present,
+	source => "/vagrant/manifests/files/mass_vhost.conf",
+	require => [
+		Package['apache2'],
+		Exec['/usr/sbin/a2enmod vhost_alias']
+	],
+	notify => Service['apache2'],
+}
+
 
 
 # ---------------------------------------------------
