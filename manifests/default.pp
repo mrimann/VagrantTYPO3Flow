@@ -123,4 +123,19 @@ service { 'apache2':
 file { "/var/www":
 	ensure => directory,
 	recurse => false,
+
+
+# ---------------------------------------------------
+# Install PhpMyAdmin
+# ---------------------------------------------------
+
+package { 'phpmyadmin':
+	ensure => present,
+	require => Package['apache2'],
+}
+
+file { '/etc/apache2/sites-enabled/phpmyadmin.conf':
+	source => "/vagrant/manifests/files/phpmyadmin.conf",
+	require => Package['phpmyadmin'],
+	notify => Service['apache2'],
 }

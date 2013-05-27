@@ -39,13 +39,13 @@ What it contains:
 - MySQL server (user: *root*, no password)
 - PHP (FPM)
 - Apache
+- phpMyAdmin (*http://192.168.42.42/phpmyadmin/* - or any other "domain" that points to this IP)
 
 TODO:
 -----
 
 The following stuff is what I want to add to this box:
 
-- phpMyAdmin
 - composer
 
 Optional and maybe later:
