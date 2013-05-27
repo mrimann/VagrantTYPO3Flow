@@ -36,7 +36,7 @@ If you fiddle around/extend/change/improve with the Puppet manifests contained i
 What it contains:
 -----------------
 
-- MySQL server (user: *root*, no password)
+- MySQL server (user: *root*, password *vagrant*)
 - PHP (FPM)
 - Apache
 - phpMyAdmin (*http://192.168.42.42/phpmyadmin/* - or any other "domain" that points to this IP)

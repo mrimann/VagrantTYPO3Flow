@@ -47,6 +47,12 @@ service { 'mysql':
 	require => Package["mysql-server"],
 }
 
+exec { 'mysql-root-password':
+	command => '/usr/bin/mysqladmin -u root password vagrant',
+	onlyif => '/usr/bin/mysql -u root mysql -e "show databases;"',
+	require => Package['mysql-server'],
+}
+
 
 
 # ---------------------------------------------------
@@ -58,7 +64,7 @@ package { 'php5-fpm':
 	require => Exec['apt-get update'],
 }
 
-package { 'libapache2-mod-fastcgi':
+package { 'libapache2-mod-php5':
 	ensure => installed,
 	require => Exec['apt-get update'],
 	notify => Service['apache2'],
