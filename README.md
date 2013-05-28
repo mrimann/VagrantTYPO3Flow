@@ -75,3 +75,18 @@ Optional and maybe later:
 - git
 - nano
 - Postfix / Mail-Access for testing Mails
+
+
+## How to contribute?
+
+Feel free to [file new issues](https://github.com/mrimann/VagrantTYPO3Flow/issues) if you find a problem or to propose a new feature. If you want to contribute your time and submit an improvement, I'm very eager to look at your pull request!
+
+In case you want to discuss a new feature with me, just send me an [e-mail](mario@rimann.org).
+
+## License
+
+Licensed under the permissive [MIT license](http://opensource.org/licenses/MIT) - have fun with it!
+
+### Can I use it in commercial projects?
+
+Yes, please! And if you save some of your precious time with it, I'd be very happy if you give something back - be it a warm "Thank you" by mail, spending me a drink at a conference, send me a post card or some other surprise :-)
