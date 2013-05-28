@@ -31,7 +31,7 @@ Boot up the virtual box:
 
 	vagrant up
 
-The box gets a static IP address *192.168.42.42* which is only accessible from your local computer.
+The box gets a static IP address **192.168.42.42** which is only accessible from your local computer.
 
 Now add any project you're working on (e.g. "example.com") to your hosts file and let it point to 192.168.42.42 - and create a directory with the domain name within the sub-directory "vHosts". As soon as you call that domain from your browser, you should see it working.
 
@@ -56,9 +56,9 @@ What it contains:
 -----------------
 
 - MySQL server (user: *root*, password *vagrant*)
-- PHP (FPM)
-- Apache with mass vHost config (see below)
-- phpMyAdmin (*http://192.168.42.42/phpmyadmin/* - or any other "domain" that points to this IP)
+- PHP
+- Apache with mass vHost config
+- phpMyAdmin (http://192.168.42.42/phpmyadmin/ - or any other "domain" that points to this IP)
 
 TODO:
 -----
@@ -81,7 +81,7 @@ Optional and maybe later:
 
 Feel free to [file new issues](https://github.com/mrimann/VagrantTYPO3Flow/issues) if you find a problem or to propose a new feature. If you want to contribute your time and submit an improvement, I'm very eager to look at your pull request!
 
-In case you want to discuss a new feature with me, just send me an [e-mail](mario@rimann.org).
+In case you want to discuss a new feature with me, just send me an [e-mail](mailto:mario@rimann.org).
 
 ## License
 
