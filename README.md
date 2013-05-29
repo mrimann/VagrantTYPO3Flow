@@ -89,4 +89,4 @@ Licensed under the permissive [MIT license](http://opensource.org/licenses/MIT) 
 
 ### Can I use it in commercial projects?
 
-Yes, please! And if you save some of your precious time with it, I'd be very happy if you give something back - be it a warm "Thank you" by mail, spending me a drink at a conference, send me a post card or some other surprise :-)
+Yes, please! And if you save some of your precious time with it, I'd be very happy if you give something back - be it a warm "Thank you" by mail, spending me a drink at a conference, [send me a post card or some other surprise](http://www.rimann.org/support/) :-)
