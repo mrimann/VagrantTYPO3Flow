@@ -148,6 +148,13 @@ exec { "/usr/sbin/a2enmod vhost_alias":
 	require => Package['apache2'],
 }
 
+# Enable the "rewrite" module for apache
+exec { "/usr/sbin/a2enmod rewrite":
+	unless => "/bin/readlink -e /etc/apache2/mods-enabled/rewrite.load",
+	notify => Exec["force-reload-apache2"],
+	require => Package['apache2'],
+}
+
 exec { "force-reload-apache2":
 	command => "/etc/init.d/apache2 force-reload",
 	refreshonly => true,
