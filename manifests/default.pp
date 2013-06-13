@@ -9,6 +9,18 @@ package { 'unzip':
 	ensure => present,
 }
 
+package { 'curl':
+	ensure => present,
+}
+
+package { 'git':
+	ensure => present,
+}
+
+package { 'tig':
+	ensure => present,
+}
+
 exec { "Import repo signing key to apt keys":
 	path   => "/usr/bin:/usr/sbin:/bin",
 	command     => "apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E5267A6C",
