@@ -13,6 +13,10 @@ package { 'curl':
 	ensure => present,
 }
 
+package { 'nano':
+	ensure => present,
+}
+
 package { 'git':
 	ensure => present,
 }

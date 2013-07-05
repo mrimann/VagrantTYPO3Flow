@@ -59,6 +59,8 @@ What it contains:
 - PHP
 - Apache with mass vHost config
 - phpMyAdmin (http://192.168.42.42/phpmyadmin/ - or any other "domain" that points to this IP)
+- nano-Editor
+- git and tig
 
 TODO:
 -----
@@ -72,8 +74,6 @@ Optional and maybe later:
 - NginX
 - xDebug
 - zsh with oh-my-zsh
-- git
-- nano
 - Postfix / Mail-Access for testing Mails
 
 
