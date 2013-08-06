@@ -136,6 +136,34 @@ file { '/etc/php5/conf.d/99-vagrant.ini':
 
 
 # ---------------------------------------------------
+# Install Nginx
+# ---------------------------------------------------
+
+package { "nginx":
+	ensure => present,
+	require => Exec['apt-get update'],
+}
+
+file { '/etc/nginx/nginx.conf':
+	ensure => present,
+	source => "/vagrant/manifests/files/nginx.conf",
+	require => [
+		Package['nginx'],
+	],
+	notify => Service['nginx'],
+}
+
+service { 'nginx':
+	ensure => running,
+	hasstatus => true,
+	hasrestart => true,
+	enable => true,
+	require => Package['nginx'],
+}
+
+
+
+# ---------------------------------------------------
 # Install Apache
 # ---------------------------------------------------
 
@@ -176,12 +204,22 @@ exec { "force-reload-apache2":
 	refreshonly => true,
 }
 
+file { '/etc/apache2/ports.conf':
+	ensure => present,
+	source => "/vagrant/manifests/files/ports.conf",
+	require => [
+		Package['apache2']
+	],
+	notify => Service['apache2'],
+}
+
 file { '/etc/apache2/sites-enabled/mass_vhost.conf':
 	ensure => present,
 	source => "/vagrant/manifests/files/mass_vhost.conf",
 	require => [
 		Package['apache2'],
-		Exec['/usr/sbin/a2enmod vhost_alias']
+		Exec['/usr/sbin/a2enmod vhost_alias'],
+		File['/etc/apache2/ports.conf']
 	],
 	notify => Service['apache2'],
 }
