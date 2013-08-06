@@ -31,9 +31,14 @@ Boot up the virtual box:
 
 	vagrant up
 
-The box gets a static IP address **192.168.42.42** which is only accessible from your local computer.
+The box gets two static IP addresses **192.168.42.42** and **192.168.42.43** which are only accessible from your local computer.
 
-Now add any project you're working on (e.g. "example.com") to your hosts file and let it point to 192.168.42.42 - and create a directory with the domain name within the sub-directory "vHosts". As soon as you call that domain from your browser, you should see it working.
+Now add any project you're working on (e.g. "example.com") to your hosts file and let it point to 192.168.42.42 or 192.168.42.43 - and create a directory with the domain name within the sub-directory "vHosts". As soon as you call that domain from your browser, you should see it working.
+
+The two IP addresses are for either Apache or Nginx - this means you can direct the request to either one of the two webservers via your hosts file entry:
+
+* Apache listens on 192.168.42.42 on port 80
+* Nginx listens on 192.168.42.43 on port 80
 
 For demonstration purpose, I've added "phpconfig.lo" already, as soon as you let that name point to the IP 192.168.42.42, you should see some _phpinfo()_ output when accessing "phpconfig.lo" with your browser.
 
@@ -58,6 +63,7 @@ What it contains:
 - MySQL server (user: *root*, password *vagrant*)
 - PHP
 - Apache with mass vHost config
+- Nginx with mass host config
 - phpMyAdmin (http://192.168.42.42/phpmyadmin/ - or any other "domain" that points to this IP)
 - nano-Editor
 - git and tig
@@ -71,7 +77,6 @@ The following stuff is what I want to add to this box:
 
 Optional and maybe later:
 
-- NginX
 - xDebug
 - zsh with oh-my-zsh
 - Postfix / Mail-Access for testing Mails
