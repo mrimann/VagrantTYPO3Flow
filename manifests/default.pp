@@ -47,6 +47,32 @@ exec { 'apt-get update':
 
 
 # ---------------------------------------------------
+# Install dnsmasq
+# ---------------------------------------------------
+
+package { "dnsmasq":
+	ensure => present,
+	require => Exec['apt-get update'],
+}
+
+service { 'dnsmasq':
+	ensure => running,
+	hasstatus => true,
+	hasrestart => true,
+	enable => true,
+	require => Package["dnsmasq"],
+}
+
+file { '/etc/dnsmasq.conf':
+	ensure => present,
+	source => "/vagrant/manifests/files/dnsmasq.conf",
+	notify => Service['dnsmasq'],
+}
+
+
+
+
+# ---------------------------------------------------
 # Install MySQL
 # ---------------------------------------------------
 
