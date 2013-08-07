@@ -33,12 +33,14 @@ Boot up the virtual box:
 
 The box gets two static IP addresses **192.168.42.42** and **192.168.42.43** which are only accessible from your local computer.
 
-Now add any project you're working on (e.g. "example.com") to your hosts file and let it point to 192.168.42.42 or 192.168.42.43 - and create a directory with the domain name within the sub-directory "vHosts". As soon as you call that domain from your browser, you should see it working.
+Now add any project you're working on (e.g. "example.com") to your hosts file and let it point to 192.168.42.42 or 192.168.42.43 - and create a directory with the domain name within the sub-directory "vHosts". As soon as you call that domain from your browser, you should see it working. As an alternative to editing your hosts file over and over again, you can of course also install dnsmasq on your host system.
 
 The two IP addresses are for either Apache or Nginx - this means you can direct the request to either one of the two webservers via your hosts file entry:
 
 * Apache listens on 192.168.42.42 on port 80
 * Nginx listens on 192.168.42.43 on port 80
+
+For name resolution from within the guest system (e.g. within the vagrant box), the dnsmasq tool is installed and configured so that lookups to *.dev, *.prod and *.lo will always result in the IP of Nginx (192.168.42.43).
 
 For demonstration purpose, I've added "phpconfig.lo" already, as soon as you let that name point to the IP 192.168.42.42, you should see some _phpinfo()_ output when accessing "phpconfig.lo" with your browser.
 
@@ -64,6 +66,7 @@ What it contains:
 - PHP
 - Apache with mass vHost config
 - Nginx with mass host config
+- dnsmasq config (for local name resolution within the vagrant-box)
 - phpMyAdmin (http://192.168.42.42/phpmyadmin/ - or any other "domain" that points to this IP)
 - nano-Editor
 - git and tig
