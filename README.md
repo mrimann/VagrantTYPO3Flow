@@ -70,13 +70,14 @@ What it contains:
 - phpMyAdmin (http://192.168.42.42/phpmyadmin/ - or any other "domain" that points to this IP)
 - nano-Editor
 - git and tig
+- Composer (installed + kept up to date)
 
 TODO:
 -----
 
 The following stuff is what I want to add to this box:
 
-- composer
+[vacuum]
 
 Optional and maybe later:
 

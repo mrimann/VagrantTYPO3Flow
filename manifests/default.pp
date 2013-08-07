@@ -174,6 +174,27 @@ file { '/etc/php5/conf.d/99-vagrant.ini':
 
 
 # ---------------------------------------------------
+# Install Composer
+# ---------------------------------------------------
+
+exec { 'install-composer':
+	command => 'curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer',
+	path => "/usr/local/bin/:/usr/bin/:/bin/",
+	timeout => 0,
+	creates => "/usr/local/bin/composer",
+}
+
+exec { 'selfupdate-composer':
+	command => 'composer self-update',
+	path => "/usr/local/bin/:/usr/bin/",
+	require => [
+		Exec['install-composer'],
+	],
+}
+
+
+
+# ---------------------------------------------------
 # Install Nginx
 # ---------------------------------------------------
 
