@@ -123,6 +123,18 @@ service { 'php5-fpm':
 	hasstatus => true,
 }
 
+file { '/etc/php5/fpm/pool.d/www.conf':
+	ensure => present,
+	source => "/vagrant/manifests/files/www.conf",
+	require => [
+		Package['php5-fpm']
+	],
+	notify => [
+		Service['php5-fpm'],
+	],
+}
+
+
 file { '/etc/php5/conf.d/99-vagrant.ini':
 	ensure => present,
 	source => "/vagrant/manifests/files/90-vagrant.ini",
