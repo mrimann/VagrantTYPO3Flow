@@ -33,7 +33,7 @@ exec { "Import repo signing key to apt keys":
 
 file { '/etc/apt/sources.list.d/php-5.4-repos.list':
 	ensure => present,
-	source => "/vagrant/manifests/files/php-5.4-repos.list",
+	source => "/vagrant/manifests/files/php/php-5.4-repos.list",
 	notify => Service['php5-fpm'],
 }
 
@@ -65,7 +65,7 @@ service { 'dnsmasq':
 
 file { '/etc/dnsmasq.conf':
 	ensure => present,
-	source => "/vagrant/manifests/files/dnsmasq.conf",
+	source => "/vagrant/manifests/files/dnsmasq/dnsmasq.conf",
 	notify => Service['dnsmasq'],
 }
 
@@ -151,7 +151,7 @@ service { 'php5-fpm':
 
 file { '/etc/php5/fpm/pool.d/www.conf':
 	ensure => present,
-	source => "/vagrant/manifests/files/www.conf",
+	source => "/vagrant/manifests/files/php/www.conf",
 	require => [
 		Package['php5-fpm']
 	],
@@ -163,7 +163,7 @@ file { '/etc/php5/fpm/pool.d/www.conf':
 
 file { '/etc/php5/conf.d/99-vagrant.ini':
 	ensure => present,
-	source => "/vagrant/manifests/files/90-vagrant.ini",
+	source => "/vagrant/manifests/files/php/90-vagrant.ini",
 	require => [
 		Package['libapache2-mod-php5'],
 	],
@@ -205,7 +205,7 @@ package { "nginx":
 
 file { '/etc/nginx/nginx.conf':
 	ensure => present,
-	source => "/vagrant/manifests/files/nginx.conf",
+	source => "/vagrant/manifests/files/nginx/nginx.conf",
 	require => [
 		Package['nginx'],
 	],
@@ -265,7 +265,7 @@ exec { "force-reload-apache2":
 
 file { '/etc/apache2/ports.conf':
 	ensure => present,
-	source => "/vagrant/manifests/files/ports.conf",
+	source => "/vagrant/manifests/files/apache/ports.conf",
 	require => [
 		Package['apache2']
 	],
@@ -274,7 +274,7 @@ file { '/etc/apache2/ports.conf':
 
 file { '/etc/apache2/sites-enabled/mass_vhost.conf':
 	ensure => present,
-	source => "/vagrant/manifests/files/mass_vhost.conf",
+	source => "/vagrant/manifests/files/apache/mass_vhost.conf",
 	require => [
 		Package['apache2'],
 		Exec['/usr/sbin/a2enmod vhost_alias'],
@@ -295,7 +295,7 @@ package { 'phpmyadmin':
 }
 
 file { '/etc/apache2/sites-enabled/phpmyadmin.conf':
-	source => "/vagrant/manifests/files/phpmyadmin.conf",
+	source => "/vagrant/manifests/files/apache/phpmyadmin.conf",
 	require => Package['phpmyadmin'],
 	notify => Service['apache2'],
 }
