@@ -11,5 +11,7 @@ Vagrant.configure("2") do |config|
 	config.vm.synced_folder "vHosts/", "/var/www/", :extra => 'dmode=770,fmode=770', :nfs => true
 
 	# configure the VM via Puppet
-	config.vm.provision :puppet
+	config.vm.provision :puppet do |puppet|
+		puppet.module_path = "manifests/modules"
+	end
 end

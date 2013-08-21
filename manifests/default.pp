@@ -300,3 +300,6 @@ file { '/etc/apache2/sites-enabled/phpmyadmin.conf':
 	require => Package['phpmyadmin'],
 	notify => Service['apache2'],
 }
+
+
+include gerrit
