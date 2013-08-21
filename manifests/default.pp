@@ -39,6 +39,7 @@ file { '/etc/apt/sources.list.d/php-5.4-repos.list':
 
 exec { 'apt-get update':
 	command => '/usr/bin/apt-get update',
+	onlyif => "/bin/bash -c 'exit $(( $(( $(date +%s) - $(stat -c %Y /var/lib/apt/lists/$( ls /var/lib/apt/lists/ -tr1 | tail -1 )) )) <= 604800 ))'",
 	require => [
 		File['/etc/apt/sources.list.d/php-5.4-repos.list'],
 		Exec["Import repo signing key to apt keys"],
