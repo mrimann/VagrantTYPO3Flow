@@ -194,6 +194,10 @@ exec { 'install-composer':
 	path => "/usr/local/bin/:/usr/bin/:/bin/",
 	timeout => 0,
 	creates => "/usr/local/bin/composer",
+	require => [
+		Package['curl'],
+		Package['php5-cli'],
+	],
 }
 
 exec { 'selfupdate-composer':
