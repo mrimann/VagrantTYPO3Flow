@@ -184,6 +184,14 @@ file { '/etc/php5/fpm/conf.d/90-vagrant.ini':
 	],
 }
 
+file { '/etc/php5/cli/conf.d/90-vagrant.ini':
+	ensure => present,
+	source => "/vagrant/manifests/files/php/90-vagrant.ini",
+	require => [
+		Package['php5-cli'],
+	],
+}
+
 
 # ---------------------------------------------------
 # Install Composer
