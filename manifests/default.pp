@@ -162,7 +162,7 @@ file { '/etc/php5/fpm/pool.d/www.conf':
 }
 
 
-file { '/etc/php5/conf.d/99-vagrant.ini':
+file { '/etc/php5/apache2/conf.d/99-vagrant.ini':
 	ensure => present,
 	source => "/vagrant/manifests/files/php/90-vagrant.ini",
 	require => [
@@ -170,6 +170,17 @@ file { '/etc/php5/conf.d/99-vagrant.ini':
 	],
 	notify => [
 		Service['apache2'],
+	],
+}
+
+file { '/etc/php5/fpm/conf.d/90-vagrant.ini':
+	ensure => present,
+	source => "/vagrant/manifests/files/php/90-vagrant.ini",
+	require => [
+		Package['php5-fpm'],
+	],
+	notify => [
+		Service['php5-fpm'],
 	],
 }
 
