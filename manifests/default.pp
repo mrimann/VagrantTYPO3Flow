@@ -272,7 +272,10 @@ file { "/var/www":
 exec { "/usr/sbin/a2enmod vhost_alias":
 	unless => "/bin/readlink -e /etc/apache2/mods-enabled/vhost_alias.load",
 	notify => Exec["force-reload-apache2"],
-	require => Package['apache2'],
+	require => [
+		Package['apache2'],
+		File['/etc/apache2/ports.conf'],
+	],
 }
 
 # Enable the "rewrite" module for apache
