@@ -25,7 +25,7 @@ package { 'tig':
 	ensure => present,
 }
 
-exec { "Import repo signing key to apt keys":
+exec { "Import repo signing key to apt keys for php":
 	path   => "/usr/bin:/usr/sbin:/bin",
 	command     => "apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E5267A6C",
 	unless      => "apt-key list | grep E5267A6C",
@@ -33,8 +33,20 @@ exec { "Import repo signing key to apt keys":
 
 file { '/etc/apt/sources.list.d/php-5.4-repos.list':
 	ensure => present,
-	source => "/vagrant/manifests/files/php/php-5.4-repos.list",
+	source => "/vagrant/manifests/files/apt/php-5.4-repos.list",
 	notify => Service['php5-fpm'],
+}
+
+exec { "Import repo signing key to apt keys for nginx":
+	path   => "/usr/bin:/usr/sbin:/bin",
+	command     => "apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 7BD9BF62",
+	unless      => "apt-key list | grep 7BD9BF62",
+}
+
+file { '/etc/apt/sources.list.d/nginx-repos.list':
+	ensure => present,
+	source => "/vagrant/manifests/files/apt/nginx-repos.list",
+	notify => Service['nginx'],
 }
 
 exec { 'apt-get update':
@@ -42,7 +54,9 @@ exec { 'apt-get update':
 	onlyif => "/bin/bash -c 'exit $(( $(( $(date +%s) - $(stat -c %Y /var/lib/apt/lists/$( ls /var/lib/apt/lists/ -tr1 | tail -1 )) )) <= 604800 ))'",
 	require => [
 		File['/etc/apt/sources.list.d/php-5.4-repos.list'],
-		Exec["Import repo signing key to apt keys"],
+		Exec["Import repo signing key to apt keys for php"],
+		File['/etc/apt/sources.list.d/nginx-repos.list'],
+		Exec["Import repo signing key to apt keys for nginx"],
 	],
 }
 

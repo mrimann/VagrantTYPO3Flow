@@ -63,9 +63,9 @@ What it contains:
 -----------------
 
 - MySQL server (user: *root*, password *vagrant*)
-- PHP
+- PHP (currently PHP 5.5.x)
 - Apache with mass vHost config
-- Nginx with mass host config
+- Nginx (currently nginx 1.4.x) with mass host config
 - dnsmasq config (for local name resolution within the vagrant-box)
 - phpMyAdmin (http://192.168.42.42/phpmyadmin/ - or any other "domain" that points to this IP)
 - nano-Editor
