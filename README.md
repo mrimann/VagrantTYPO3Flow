@@ -72,6 +72,11 @@ What it contains:
 - git and tig
 - Composer (installed + kept up to date)
 
+Where it was tested:
+--------------------
+
+- Windows 7 with VirtualBox v4.3.6 and Vagrant v1.4.1
+
 TODO:
 -----
 
