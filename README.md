@@ -58,11 +58,11 @@ If you fiddle around/extend/change/improve with the Puppet manifests contained i
 
 	vagrant provision
 
-
 What it contains:
 -----------------
 
 - MySQL server (user: *root*, password *vagrant*)
+- Remote-Access for MySQL
 - PHP (currently PHP 5.5.x)
 - Apache with mass vHost config
 - Nginx (currently nginx 1.4.x) with mass host config
@@ -71,6 +71,15 @@ What it contains:
 - nano-Editor
 - git and tig
 - Composer (installed + kept up to date)
+
+
+MySQL access from "remote":
+---------------------------
+
+Sometimes, the included phpMyAdmin installation is not enough and you want to connect to the DB from your host system (from outside of the box). To do that, just run the following command to connect to the MySQL database that runs inside of the box:
+
+	mysql -h 192.168.42.42 -u root -pvagrant
+
 
 Where it was tested:
 --------------------

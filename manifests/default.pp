@@ -104,10 +104,24 @@ service { 'mysql':
 	require => Package["mysql-server"],
 }
 
+file { '/etc/mysql/my.cnf':
+	ensure => present,
+	source => "/vagrant/manifests/files/mysql/my.cnf",
+	owner => "root",
+	group => "root",
+	require => Package["mysql-server"],
+	notify => Service["mysql"]
+}
+
 exec { 'mysql-root-password':
 	command => '/usr/bin/mysqladmin -u root password vagrant',
 	onlyif => '/usr/bin/mysql -u root mysql -e "show databases;"',
-	require => Package['mysql-server'],
+	require => File['/etc/mysql/my.cnf'],
+}
+
+exec { 'mysql-remote-permissions':
+	command => '/usr/bin/mysql -u root -pvagrant -e "CREATE USER \'root\'@\'%\' IDENTIFIED BY \'vagrant\'; 	GRANT ALL PRIVILEGES ON *.* TO \'root\'@\'%\' WITH GRANT OPTION; FLUSH PRIVILEGES;"',
+	require => exec['mysql-root-password'],
 }
 
 
