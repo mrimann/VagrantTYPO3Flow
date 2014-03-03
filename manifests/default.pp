@@ -196,6 +196,11 @@ package { 'php5-sqlite':
 	require => Exec['apt-get update'],
 	notify => Service['php5-fpm'],
 }
+package { 'php5-ldap':
+	ensure => installed,
+	require => Exec['apt-get update'],
+	notify => Service['php5-fpm'],
+}
 
 service { 'php5-fpm':
 	ensure => running,
@@ -470,4 +475,18 @@ service {'mailcatcher':
 		File['/etc/init/mailcatcher.conf'],
 		File['/var/log/mailcatcher'],
 	],
+}
+
+
+# ---------------------------------------------------
+# Install OpenLDAP Server
+# ---------------------------------------------------
+
+package { 'slapd':
+	ensure => present,
+}
+
+package { 'ldap-utils':
+	ensure => present,
+	require => Package['slapd'],
 }
