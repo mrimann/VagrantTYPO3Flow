@@ -171,6 +171,11 @@ package { 'php-apc':
 	require => Exec['apt-get update'],
 	notify => Service['php5-fpm'],
 }
+package { 'php5-sqlite':
+	ensure => installed,
+	require => Exec['apt-get update'],
+	notify => Service['php5-fpm'],
+}
 
 service { 'php5-fpm':
 	ensure => running,
