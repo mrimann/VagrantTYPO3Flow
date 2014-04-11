@@ -360,3 +360,73 @@ file { '/etc/apache2/sites-enabled/phpmyadmin.conf':
 	require => Package['phpmyadmin'],
 	notify => Service['apache2'],
 }
+
+
+
+# ---------------------------------------------------
+# Install ruby stuff needed e.g. for mailcatcher
+# ---------------------------------------------------
+package { 'g++':
+	ensure => 'present',
+
+}
+
+package { 'make':
+	ensure => 'present',
+}
+
+package { 'libsqlite3-dev':
+	ensure => 'present',
+}
+
+
+
+# --------------------------------------------------------------------
+# Install and configure the mailcatcher Mock-SMTP-Server
+#
+# Heavily inspired by https://github.com/actionjack/puppet-mailcatcher
+# --------------------------------------------------------------------
+package { 'mailcatcher':
+	ensure => 'present',
+	provider => 'gem',
+	require => [
+		Package['g++'],
+		Package['make'],
+		Package['libsqlite3-dev'],
+	],
+}
+
+user { 'mailcatcher':
+	ensure	=> 'present',
+	comment	=> 'Mailcatcher Service User',
+	home	=> '/var/spool/mailcatcher',
+	shell	=> '/bin/true',
+}
+
+file {'/var/log/mailcatcher':
+	ensure	=> 'directory',
+	owner	=> 'mailcatcher',
+	group	=> 'mailcatcher',
+	mode	=> '0755',
+	require	=> User['mailcatcher']
+}
+
+file { '/etc/init/mailcatcher.conf':
+	ensure	=> 'file',
+	source	=> "/vagrant/manifests/files/mailcatcher/mailcatcher.conf",
+	mode	=> '0755',
+	notify	=> Service['mailcatcher']
+}
+
+service {'mailcatcher':
+	ensure		=> 'running',
+	provider	=> 'upstart',
+	hasstatus	=> true,
+	hasrestart	=> true,
+	require		=> [
+		User['mailcatcher'],
+		Package['mailcatcher'],
+		File['/etc/init/mailcatcher.conf'],
+		File['/var/log/mailcatcher'],
+	],
+}

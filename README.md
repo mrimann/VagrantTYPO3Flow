@@ -68,6 +68,7 @@ What it contains:
 - Nginx (currently nginx 1.4.x) with mass host config
 - dnsmasq config (for local name resolution within the vagrant-box)
 - phpMyAdmin (http://192.168.42.42/phpmyadmin/ - or any other "domain" that points to this IP)
+- mailcatcher (http://192.168.42.42:1080/) a "Mock SMTP-Server" that catches all Mails sent to it and makes them available via a web-frontend (perfectly suited for testing applications that send mails
 - nano-Editor
 - git and tig
 - Composer (installed + kept up to date)
@@ -97,7 +98,6 @@ Optional and maybe later:
 
 - xDebug
 - zsh with oh-my-zsh
-- Postfix / Mail-Access for testing Mails
 
 
 ## How to contribute?
