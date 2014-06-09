@@ -54,6 +54,7 @@ What it contains:
 
 - Ubuntu 14.04 LTS (trusty)
 - PHP 5.5.x
+- xDebug
 - MySQL server 5.5.x (user: *root*, password *vagrant*)
 - Remote-Access for MySQL
 - Nginx 1.4.x with mass host config
@@ -83,6 +84,10 @@ If you want to use LDAP, you should reconfigure the package with the following c
 Basically to set your username/password to connect to your new OpenLDAP-Server.
 
 
+Access xDebug:
+--------------
+
+
 Where it was tested:
 --------------------
 
@@ -97,7 +102,6 @@ The following stuff is what I want to add to this box:
 
 Optional and maybe later:
 
-- xDebug
 - adminer instead of phpMyAdmin
 - zsh with oh-my-zsh
 

@@ -157,6 +157,11 @@ package { 'php5-ldap':
 	require => Exec['apt-get update'],
 	notify => Service['php5-fpm'],
 }
+package { 'php5-xdebug':
+  ensure => installed,
+  require => Exec['apt-get update'],
+  notify => Service['php5-fpm'],
+}
 
 service { 'php5-fpm':
 	ensure => running,
