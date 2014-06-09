@@ -72,6 +72,7 @@ What it contains:
 - nano-Editor
 - git and tig
 - Composer (installed + kept up to date)
+- Node including npm and Bower
 
 
 MySQL access from "remote":
