@@ -140,7 +140,7 @@ exec { 'mysql-root-password':
 }
 
 exec { 'mysql-remote-permissions':
-	command => '/usr/bin/mysql -h 192.168.42.42 -u root -pvagrant -e "CREATE USER \'root\'@\'%\' IDENTIFIED BY \'vagrant\'; 	GRANT ALL PRIVILEGES ON *.* TO \'root\'@\'%\' WITH GRANT OPTION; FLUSH PRIVILEGES;"',
+	command => '/usr/bin/mysql -S /var/run/mysqld/mysqld.sock -u root -pvagrant -e "CREATE USER \'root\'@\'%\' IDENTIFIED BY \'vagrant\'; 	GRANT ALL PRIVILEGES ON *.* TO \'root\'@\'%\' WITH GRANT OPTION; FLUSH PRIVILEGES;"',
     onlyif => '/usr/bin/test -z $(/usr/bin/mysql -u root -pvagrant -B -N -e "select user from mysql.user WHERE user=\'root\' AND host=\'%\' AND grant_priv=\'Y\';")',
 	require => Exec['mysql-root-password'],
 }
