@@ -398,6 +398,7 @@ package { 'nodejs':
 
 exec { '/usr/bin/npm install -g bower':
 	require => Package['nodejs'],
+	creates => "/usr/bin/bower",
 }
 
 
