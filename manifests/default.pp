@@ -100,6 +100,7 @@ service { 'dnsmasq':
 file { '/etc/dnsmasq.conf':
 	ensure => present,
 	source => "/vagrant/manifests/files/dnsmasq/dnsmasq.conf",
+	require => Package["dnsmasq"],
 	notify => Service['dnsmasq'],
 }
 
