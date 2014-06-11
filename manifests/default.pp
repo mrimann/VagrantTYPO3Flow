@@ -7,22 +7,27 @@ package {'apparmor':
 }
 package { 'unzip':
 	ensure => present,
+	require => Exec['apt-get update'],
 }
 
 package { 'curl':
 	ensure => present,
+	require => Exec['apt-get update'],
 }
 
 package { 'nano':
 	ensure => present,
+	require => Exec['apt-get update'],
 }
 
 package { 'git':
 	ensure => present,
+	require => Exec['apt-get update'],
 }
 
 package { 'tig':
 	ensure => present,
+	require => Exec['apt-get update'],
 }
 
 exec { "Import repo signing key to apt keys for php":
@@ -366,7 +371,10 @@ file { '/etc/apache2/sites-enabled/mass_vhost.conf':
 
 package { 'phpmyadmin':
 	ensure => present,
-	require => Package['apache2'],
+	require => [
+		Exec['apt-get update'],
+		Package['apache2'],
+	],
 }
 
 file { '/etc/apache2/sites-enabled/phpmyadmin.conf':
@@ -397,15 +405,17 @@ exec { '/usr/bin/npm install -g bower':
 # ---------------------------------------------------
 package { 'g++':
 	ensure => 'present',
-
+	require => Exec['apt-get update'],
 }
 
 package { 'make':
 	ensure => 'present',
+	require => Exec['apt-get update'],
 }
 
 package { 'libsqlite3-dev':
 	ensure => 'present',
+	require => Exec['apt-get update'],
 }
 
 
