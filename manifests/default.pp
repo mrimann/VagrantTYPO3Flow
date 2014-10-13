@@ -42,26 +42,12 @@ file { '/etc/apt/sources.list.d/nginx-repos.list':
 	notify => Service['nginx'],
 }
 
-exec { "Import repo signing key to apt keys for nodejs":
-	path   => "/usr/bin:/usr/sbin:/bin",
-	command     => "apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C7917B12",
-	unless      => "apt-key list | grep C7917B12",
-}
-
-file { '/etc/apt/sources.list.d/nodejs-repos.list':
-	ensure => present,
-	source => "/vagrant/manifests/files/apt/nodejs-repos.list",
-}
-
-
 exec { 'apt-get update':
 	command => '/usr/bin/apt-get update',
 	onlyif => "/bin/bash -c 'exit $(( $(( $(date +%s) - $(stat -c %Y /var/lib/apt/lists/$( ls /var/lib/apt/lists/ -tr1 | tail -1 )) )) <= 604800 ))'",
 	require => [
 		File['/etc/apt/sources.list.d/nginx-repos.list'],
 		Exec["Import repo signing key to apt keys for nginx"],
-		File['/etc/apt/sources.list.d/nodejs-repos.list'],
-		Exec["Import repo signing key to apt keys for nodejs"],
 	],
 }
 
@@ -296,14 +282,14 @@ package { 'phpmyadmin':
 # use e.g. for web-development
 # ---------------------------------------------------
 
-package { 'nodejs':
+package { 'npm':
 	ensure => 'present',
 	require => Exec['apt-get update'],
 }
 
 exec { '/usr/bin/npm install -g bower':
-	require => Package['nodejs'],
-	creates => "/usr/bin/bower",
+	require => Package['npm'],
+	creates => "/usr/local/bin/bower",
 }
 
 
