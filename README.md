@@ -68,6 +68,7 @@ If you fiddle around/extend/change/improve with the Puppet manifests contained i
 What it contains:
 -----------------
 
+- Ubuntu 14.04 LTS (trusty)
 - MySQL server (user: *root*, password *vagrant*)
 - Remote-Access for MySQL
 - PHP (currently PHP 5.5.x)
