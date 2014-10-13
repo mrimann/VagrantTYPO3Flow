@@ -152,11 +152,6 @@ package { 'php5-cli':
 	ensure => installed,
 	require => Exec['apt-get update'],
 }
-package { 'php-apc':
-	ensure => installed,
-	require => Exec['apt-get update'],
-	notify => Service['php5-fpm'],
-}
 package { 'php5-sqlite':
 	ensure => installed,
 	require => Exec['apt-get update'],
