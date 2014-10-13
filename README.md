@@ -41,19 +41,6 @@ For name resolution from within the guest system (e.g. within the vagrant box), 
 
 For demonstration purpose, I've added "phpconfig.lo" already, as soon as you let that name point to the IP 192.168.42.42, you should see some _phpinfo()_ output when accessing "phpconfig.lo" with your browser.
 
-
-If you want to use LDAP, you should reconfigure the package with the following command:
-
-	dpkg-reconfigure slapd
-
-Basically to set your username/password to connect to your new OpenLDAP-Server.
-
-If you're running a [TYPO3 Flow](http://flow.typo3.org/) based web-application where the document-root must point to a sub-directory (e.g. /Web/), you can solve this with a little symlink as shown in the following (pseudo) directory listing:
-
-	Vagrant-Directory
-	|-> vHosts
-		|-> example.com -> example-Distribution/Web/
-
 To log in via SSH, just execute the following command from within the current directory:
 
 	vagrant ssh
@@ -86,6 +73,14 @@ MySQL access from "remote":
 Sometimes, the included phpMyAdmin installation is not enough and you want to connect to the DB from your host system (from outside of the box). To do that, just run the following command to connect to the MySQL database that runs inside of the box:
 
 	mysql -h 192.168.42.42 -u root -pvagrant
+
+LDAP Server configuration:
+--------------------------
+If you want to use LDAP, you should reconfigure the package with the following command:
+
+	dpkg-reconfigure slapd
+
+Basically to set your username/password to connect to your new OpenLDAP-Server.
 
 
 Where it was tested:
