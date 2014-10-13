@@ -222,7 +222,7 @@ exec { 'install-composer':
 }
 
 exec { 'selfupdate-composer':
-	command => 'composer self-update',
+	command => 'sudo composer self-update',
 	path => "/usr/local/bin/:/usr/bin/",
 	require => [
 		Exec['install-composer'],
