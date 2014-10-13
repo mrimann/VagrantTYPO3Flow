@@ -293,22 +293,13 @@ exec { '/usr/bin/npm install -g bower':
 }
 
 
+
 # ---------------------------------------------------
 # Install ruby stuff needed e.g. for mailcatcher
 # ---------------------------------------------------
-package { 'g++':
-	ensure => 'present',
-	require => Exec['apt-get update'],
-}
-
-package { 'make':
-	ensure => 'present',
-	require => Exec['apt-get update'],
-}
-
-package { 'libsqlite3-dev':
-	ensure => 'present',
-	require => Exec['apt-get update'],
+package { ["ruby1.9.1-dev", "libsqlite3-dev", "build-essential"]:
+	ensure  => latest,
+	require => Exec["apt-get update"],
 }
 
 
@@ -319,11 +310,12 @@ package { 'libsqlite3-dev':
 # Heavily inspired by https://github.com/actionjack/puppet-mailcatcher
 # --------------------------------------------------------------------
 package { 'mailcatcher':
-	ensure => 'present',
+	ensure => 'latest',
 	provider => 'gem',
+	notify => Service['nginx'],
 	require => [
-		Package['g++'],
-		Package['make'],
+		Package['ruby1.9.1-dev'],
+		Package['build-essential'],
 		Package['libsqlite3-dev'],
 	],
 }
