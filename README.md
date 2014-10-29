@@ -98,6 +98,7 @@ The following stuff is what I want to add to this box:
 Optional and maybe later:
 
 - xDebug
+- adminer instead of phpMyAdmin
 - zsh with oh-my-zsh
 
 
