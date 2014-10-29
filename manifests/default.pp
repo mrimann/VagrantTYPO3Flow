@@ -106,9 +106,10 @@ file { '/etc/mysql/my.cnf':
 }
 
 exec { 'mysql-root-password':
-	command => '/usr/bin/mysqladmin -u root password vagrant',
-	onlyif => '/usr/bin/mysql -u root mysql -e "show databases;"',
+	command => '/usr/bin/mysqladmin -u root password "vagrant"',
+	onlyif => '/usr/bin/mysqladmin -u root status',
 	require => File['/etc/mysql/my.cnf'],
+	notify => Service['mysql'],
 }
 
 
