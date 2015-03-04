@@ -1,3 +1,6 @@
 /.vagrant/machines/default/virtualbox/id
 /.idea/
 /.vagrant/
+
+### OSX ###
+.DS_Store
