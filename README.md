@@ -87,6 +87,7 @@ Where it was tested:
 --------------------
 
 - Windows 7 with VirtualBox v4.3.6 and Vagrant v1.4.1
+  - **Attention** You need to disable `sendfile` in the Nginx config, see the note in the config file, when running this box on a Windows host!
 
 TODO:
 -----
