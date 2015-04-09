@@ -11,7 +11,7 @@ Vagrant.configure("2") do |config|
 
 	config.vm.network :private_network, ip: "192.168.42.42"
 
-	config.vm.synced_folder "vHosts/", "/var/www/", :mount_options => ["dmode=777","fmode=777"], :nfs => true
+	config.vm.synced_folder "vHosts/", "/var/www/", :nfs => true
 
 	# configure the VM via Puppet
 	config.vm.provision :puppet
