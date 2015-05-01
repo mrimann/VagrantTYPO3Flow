@@ -358,3 +358,22 @@ package { 'ldap-utils':
 	ensure => present,
 	require => Package['slapd'],
 }
+
+
+
+# ---------------------------------------------------
+# Install Redis Server
+# ---------------------------------------------------
+
+package { 'redis-server':
+	ensure => present,
+}
+
+package { 'redis-tools':
+	ensure => present,
+}
+
+package { 'php5-redis':
+	ensure => present,
+	notify => Service['php5-fpm'],
+}

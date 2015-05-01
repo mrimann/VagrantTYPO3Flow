@@ -65,6 +65,7 @@ What it contains:
 - Composer (installed + kept up to date)
 - Node including npm and Bower
 - OpenLDAP Server, LDAP CLI Tools and PHP LDAP-Module
+- Redis Server
 
 
 MySQL access from "remote":
