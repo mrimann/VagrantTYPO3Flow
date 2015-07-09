@@ -362,6 +362,22 @@ package { 'ldap-utils':
 
 
 # ---------------------------------------------------
+# Install Supervisor Daemon
+# ---------------------------------------------------
+
+include supervisor
+
+# Uncomment the following lines to enable a dummy task (or change it to your command)
+#supervisor::task{ 'dummy':
+#	user => 'root',
+#	command => 'sleep 3',
+#	autorestart => 'true',
+#	numprocs => 2
+#}
+
+
+
+# ---------------------------------------------------
 # Install Redis Server
 # ---------------------------------------------------
 

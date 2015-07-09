@@ -66,6 +66,7 @@ What it contains:
 - Node including npm and Bower
 - OpenLDAP Server, LDAP CLI Tools and PHP LDAP-Module
 - Redis Server
+- Supervisor Daemon
 
 
 MySQL access from "remote":
@@ -83,6 +84,12 @@ If you want to use LDAP, you should reconfigure the package with the following c
 
 Basically to set your username/password to connect to your new OpenLDAP-Server.
 
+
+Supervisor Daemon:
+------------------
+If you need to test applications that execute one or more tasks in parallel and keep running/restarted after exiting, [supervisor](http://supervisord.org/) is your friend.
+
+See manifests/default.pp for a sample task configuration (needs to be uncommented and you're ready). See the log file at /var/log/supervisor/supervisord.log to see what happens.
 
 Where it was tested:
 --------------------
