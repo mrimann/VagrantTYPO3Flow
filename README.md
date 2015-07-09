@@ -66,6 +66,7 @@ What it contains:
 - Node including npm and Bower
 - OpenLDAP Server, LDAP CLI Tools and PHP LDAP-Module
 - Redis Server
+- Beanstalk Daemon
 - Supervisor Daemon
 
 
@@ -83,6 +84,11 @@ If you want to use LDAP, you should reconfigure the package with the following c
 	dpkg-reconfigure slapd
 
 Basically to set your username/password to connect to your new OpenLDAP-Server.
+
+
+Beanstalk MessageQueue Daemon:
+------------------------------
+For storing any tasks or notes in a message queue, [Beanstalk](http://kr.github.io/beanstalkd/) is installed and listening on 127.0.0.1 on port 11300.
 
 
 Supervisor Daemon:

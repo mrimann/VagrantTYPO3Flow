@@ -360,6 +360,15 @@ package { 'ldap-utils':
 }
 
 
+# ---------------------------------------------------
+# Install Beanstalk Daemon
+# ---------------------------------------------------
+
+package { 'beanstalkd':
+	ensure => present,
+}
+
+
 
 # ---------------------------------------------------
 # Install Supervisor Daemon
