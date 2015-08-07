@@ -21,6 +21,7 @@ define supervisor::task(
 		mode => '0700',
 		owner => "root",
 		content => template('supervisor/supervisorTask.conf.erb'),
+		require => Package['supervisor'],
 		notify => Service['supervisor'],
 	}
 }
