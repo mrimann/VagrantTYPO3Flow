@@ -277,6 +277,13 @@ package { 'npm':
 	require => Exec['apt-get update'],
 }
 
+# install Ubuntu/Debian specific wrapper package to bring things to the right path (again)
+# see https://github.com/joyent/node/issues/3911#issuecomment-18951288
+package { 'nodejs-legacy':
+	ensure => 'present',
+	require => Package['npm']
+}
+
 exec { '/usr/bin/npm install -g bower':
 	require => Package['npm'],
 	creates => "/usr/local/bin/bower",
