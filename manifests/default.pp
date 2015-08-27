@@ -143,6 +143,11 @@ package { 'php5-gd':
 	require => Exec['apt-get update'],
 	notify => Service['php5-fpm'],
 }
+package { 'php5-imagick':
+	ensure => installed,
+	require => Exec['apt-get update'],
+	notify => Service['php5-fpm'],
+}
 package { 'php5-cli':
 	ensure => installed,
 	require => Exec['apt-get update'],
